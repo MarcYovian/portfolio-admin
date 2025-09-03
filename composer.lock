@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a035d58278fc1274e9890b271155186d",
+    "content-hash": "26596d7ed946d45ce9fdf81ab407182c",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -71,6 +71,66 @@
                 "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.3.4"
             },
             "time": "2025-07-30T15:45:57+00:00"
+        },
+        {
+            "name": "azmolla/blade-try-catch",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AbiruzzamanMolla/blade-try-catch.git",
+                "reference": "51516287848c848306c0407ad1e91a77136e99f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AbiruzzamanMolla/blade-try-catch/zipball/51516287848c848306c0407ad1e91a77136e99f8",
+                "reference": "51516287848c848306c0407ad1e91a77136e99f8",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.8.*|6.*|7.*|8.*|^9.0|^10.0|^11.0|^12.0",
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "4.*|5.*|6.*|7.*|8.*|9.*|10.*",
+                "pestphp/pest": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Azmolla\\BladeTryCatch\\BladeTryCatchServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Azmolla\\BladeTryCatch\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abiruzzaman Molla",
+                    "email": "abiruzzaman.molla@gmail.com",
+                    "role": "Backend Developer"
+                }
+            ],
+            "description": "Blade directives for try-catch-finally blocks in Laravel Blade templates",
+            "homepage": "https://github.com/AbiruzzamanMolla/blade-try-catch",
+            "keywords": [
+                "blade",
+                "error-handling",
+                "laravel",
+                "try-catch"
+            ],
+            "support": {
+                "issues": "https://github.com/AbiruzzamanMolla/blade-try-catch/issues",
+                "source": "https://github.com/AbiruzzamanMolla/blade-try-catch/tree/v0.0.3"
+            },
+            "time": "2025-07-08T09:34:27+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",

@@ -11,12 +11,14 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ViewField;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\HtmlString;
 use UnitEnum;
 
 class SkillCategoryResource extends Resource
@@ -34,7 +36,33 @@ class SkillCategoryResource extends Resource
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->required(),
+                    ->columnSpanFull()
+                    ->required()
+                    ->maxLength(255),
+
+                TextInput::make('icon')
+                    ->label('Icon Class or SVG')
+                    ->placeholder('heroicon-o-bolt atau <svg ...>...</svg>')
+                    ->helperText(new HtmlString('
+                        <div class="space-y-1 text-sm text-gray-500">
+                            <p><strong>Cara input icon:</strong></p>
+                            <ul style="list-style-type: disc; list-style-position: inside; margin-left: 1rem;">
+                                <li><span style="font-weight: 500;">Heroicon class name:</span> <code>heroicon-o-arrow-down-right</code></li>
+                                <li><span style="font-weight: 500;">Tanpa prefix:</span> <code>arrow-down-right</code> (otomatis jadi <code>heroicon-o-arrow-down-right</code>)</li>
+                                <li><span style="font-weight: 500;">SVG langsung:</span> paste kode <code>&lt;svg&gt;...&lt;/svg&gt;</code></li>
+                            </ul>
+                            <p>Lihat daftar lengkap Heroicons di
+                                <a href="https://heroicons.com" target="_blank" style="text-decoration: underline; color: #3b82f6">heroicons.com</a>
+                            </p>
+                        </div>
+                    '))
+                    ->reactive()
+                    ->columnSpanFull(),
+
+                ViewField::make('icon_preview')
+                    ->view('forms.fields.icon-preview')
+                    ->label('Preview')
+                    ->columnSpanFull(),
             ]);
     }
 
