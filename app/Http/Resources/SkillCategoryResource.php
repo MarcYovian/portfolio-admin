@@ -16,7 +16,11 @@ class SkillCategoryResource extends JsonResource
     {
         return [
             'name' => $this->name,
-            'skills' => SkillResource::collection($this->whenLoaded('skills')),
+            'icon' => $this->icon,
+            'skills' => $this->whenLoaded(
+                'skills',
+                collect($this->skills)->pluck('name')->toArray()
+            ),
         ];
     }
 }
