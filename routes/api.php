@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AchievementController;
 use App\Http\Controllers\Api\V1\EducationController;
 use App\Http\Controllers\Api\V1\ExperienceController;
 use App\Http\Controllers\Api\V1\MessageController;
@@ -21,3 +22,4 @@ Route::apiResource('experiences', ExperienceController::class);
 Route::apiResource('educations', EducationController::class);
 Route::apiResource('project-categories', ProjectCategoryController::class);
 Route::apiResource('messages', MessageController::class);
+Route::apiResource('achievements', AchievementController::class);
