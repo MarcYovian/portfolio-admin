@@ -12,6 +12,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\ImageEntry;
@@ -51,6 +52,16 @@ class AchievementResource extends Resource
                                 TextInput::make('issuer')
                                     ->label('Issuing Organization')
                                     ->required(),
+                                Select::make('tags')
+                                    ->multiple()
+                                    ->relationship('tags', 'name')
+                                    ->searchable()
+                                    ->preload()
+                                    ->createOptionForm([
+                                        TextInput::make('name')
+                                            ->required()
+                                            ->unique(ignoreRecord: true),
+                                    ]),
                                 Textarea::make('description')
                                     ->rows(5)
                                     ->required(),
@@ -93,6 +104,10 @@ class AchievementResource extends Resource
                                 TextEntry::make('title')
                                     ->size(TextSize::Medium)
                                     ->weight(FontWeight::Bold),
+                                TextEntry::make('tags')
+                                    ->label('Associated Tags')
+                                    ->badge()
+                                    ->formatStateUsing(fn($state) => $state->name),
                                 TextEntry::make('description')
                                     ->markdown()
                                     ->columnSpanFull(),
@@ -136,6 +151,10 @@ class AchievementResource extends Resource
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('issuer')
+                    ->searchable(),
+                TextColumn::make('tags.name') // Mengakses kolom 'name' dari relasi 'tags'
+                    ->label('Tags')
+                    ->badge() // Menampilkan sebagai badge/label
                     ->searchable(),
                 TextColumn::make('date')
                     ->searchable(),
