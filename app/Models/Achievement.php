@@ -14,4 +14,13 @@ class Achievement extends Model
         'description',
         'credential_url',
     ];
+
+    protected $casts = [
+        'date' => 'date',
+    ];
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'achievement_tag');
+    }
 }
