@@ -155,7 +155,8 @@ class AchievementResource extends Resource
                 TextColumn::make('tags.name') // Mengakses kolom 'name' dari relasi 'tags'
                     ->label('Tags')
                     ->badge() // Menampilkan sebagai badge/label
-                    ->searchable(),
+                    ->searchable()
+                    ->limitList(3),
                 TextColumn::make('date')
                     ->searchable(),
                 ImageColumn::make('image_url'),

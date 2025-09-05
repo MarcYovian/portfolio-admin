@@ -32,7 +32,8 @@ class ProjectsTable
                     ->sortable(),
                 TextColumn::make('skills.name')
                     ->badge()
-                    ->label('Tech Stack'),
+                    ->label('Tech Stack')
+                    ->limitList(3),
                 TextColumn::make('demo_url')
                     ->label('Demo')
                     ->icon(Heroicon::OutlinedGlobeAlt)
