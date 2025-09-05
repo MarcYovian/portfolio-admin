@@ -30,7 +30,17 @@ class ProjectForm
                             ->label('Tech Stack / Skills Used')
                             ->multiple()
                             ->searchable()
-                            ->preload(),
+                            ->preload()
+                            ->createOptionForm([
+                                TextInput::make('name')
+                                    ->required()
+                                    ->unique(ignoreRecord: true),
+                                Select::make('category_id')
+                                    ->relationship('category', 'name')
+                                    ->required()
+                                    ->searchable()
+                                    ->preload(),
+                            ]),
                     ])->columnSpan(2),
                 Group::make([
                     Section::make('Meta Data')
