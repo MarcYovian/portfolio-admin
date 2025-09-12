@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProjectResource;
+use App\Http\Resources\ProjectDetailResource;
+use App\Http\Resources\ProjectListResource;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class ProjectController extends Controller
     {
         $projects = Project::with(['category', 'skills'])->get();
 
-        return ProjectResource::collection($projects);
+        return ProjectListResource::collection($projects);
     }
 
     /**
@@ -29,10 +30,15 @@ class ProjectController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param  \App\Models\Project  $project
+     * @return \App\Http\Resources\ProjectDetailResource
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        $project->load(['category', 'skills']);
+
+        return new ProjectDetailResource($project);
     }
 
     /**

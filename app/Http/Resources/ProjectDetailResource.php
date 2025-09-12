@@ -5,8 +5,9 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
-class ProjectResource extends JsonResource
+class ProjectDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,6 +19,7 @@ class ProjectResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'slug' => Str::slug($this->title),
             'description' => $this->description,
             'image_url' => $this->image_url ? Storage::temporaryUrl($this->image_url, now()->addMinutes(5)) : null,
             'demo_url' => $this->demo_url,
